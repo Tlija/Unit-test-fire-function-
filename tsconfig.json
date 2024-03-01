@@ -22,7 +22,13 @@
     "lib": [
       "ES2022",
       "dom"
+    ],
+    "types": [
+      "firebase-functions",
+      "firebase-admin",
+      "firebase"
     ]
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
