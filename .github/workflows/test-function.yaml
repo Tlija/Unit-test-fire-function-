@@ -1,35 +1,64 @@
-name: Lint, Test, and Deploy
+name: Cloud Functions Deployment Workflow
 
 on:
   push:
     branches:
-      - master
-
+      - 'master'
+      - 'main'
 jobs:
-  build:
+  lint_and_test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: functions
-
     steps:
-      - uses: actions/checkout@v2
-
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Install dependencies
         run: npm install
-
-      - name: Run linter
+      - name: Linting
         run: npm run lint
-
-      - name: Run tests
+      - name: Testing
         run: npm test
+  deploy_functions:
+    needs: lint_and_test
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Deploy functions directly
+        run: |
+          # Logic to deploy functions directly on the main or master branch
+          echo "Deploying functions directly..."
 
-#      - name: Generate function names
-#        id: function-names
-#        run: echo "::set-output name=names::$(node generate-names.js)"
-#
-#      - name: Deploy functions
-#        env:
-#          FUNCTIONS_NAMES: ${{ steps.function-names.outputs.names }}
-#        run: npm run deploy -- --names "${FUNCTIONS_NAMES}"
+  create_function_input:
+    needs: lint_and_test
+    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create function name input
+        id: create_function_name
+        run: |
+          # Logic to generate a function name input
+          echo "::set-output name=function_name::myFunction"
+      - name: Create function name input
+        id: set_function_name
+        run: echo "${{ steps.create_function_name.outputs.function_name }}"
+      - name: Validate deployment
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const response = await github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Create Cloud Function',
+              head: context.sha,
+              base: 'main', // Or master, depending on your default branch
+              body: 'Create a new Cloud Function with the name ' + '${{ steps.set_function_name.outputs.function_name }}',
+            });
+            console.log(response);
