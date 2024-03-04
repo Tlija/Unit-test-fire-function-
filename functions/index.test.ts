@@ -1,9 +1,7 @@
-
-const assert = require('assert');
-const {request} = require('gaxios');
-const {exec} = require('child_process');
-const waitPort = require('wait-port');
-const  {before,after } =require ("mocha") ;
+import { request } from 'gaxios';
+import { exec } from 'child_process';
+import waitPort from 'wait-port';
+import { before, after } from 'mocha';
 
 const startFF = async (target, signature, port) => {
   const ff = exec(
