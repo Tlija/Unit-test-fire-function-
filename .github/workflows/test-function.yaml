@@ -22,6 +22,9 @@ jobs:
       - name: Run linter
         run: npm run lint
 
+      # Run tests
+      - name: Run tests
+        run: yarn test
 
 
 #      - name: Generate function names
