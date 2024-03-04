@@ -5,7 +5,7 @@ const {exec} = require('child_process');
 const waitPort = require('wait-port');
 const  {before,after } =require ("mocha") ;
 
-const startFF = async (target: string, signature: string, port: number) => {
+const startFF = async (target, signature, port) => {
   const ff = exec(
     `npx functions-framework --target=${target} --signature-type=${signature} --port=${port}`
   );
@@ -13,7 +13,7 @@ const startFF = async (target: string, signature: string, port: number) => {
   return ff;
 };
 
-const httpInvocation = (fnUrl: string, port: number) => {
+const httpInvocation = (fnUrl, port) => {
   const baseUrl = `http://localhost:${port}`;
 
   // GET request
@@ -25,7 +25,7 @@ const httpInvocation = (fnUrl: string, port: number) => {
 describe('index.test.ts', () => {
   describe('functions_helloworld_get helloGET', () => {
     const PORT = 8081;
-    let ffProc: { kill: () => any; };
+    let ffProc;
 
     before(async () => {
       ffProc = await startFF('helloGET', 'http', PORT);
