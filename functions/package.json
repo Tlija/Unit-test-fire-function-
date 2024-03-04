@@ -2,19 +2,27 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "ts-node helloWorld.test.ts"
   },
   "engines": {
     "node": "18"
   },
   "main": "index.ts",
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "assert": "^2.1.0",
+    "child_process": "^1.0.2",
     "firebase-admin": "^11.8.0",
-    "firebase-functions": "^4.3.1"
+    "firebase-functions": "^4.3.1",
+    "gaxios": "^6.3.0",
+    "wait-port": "^1.1.0"
   },
   "devDependencies": {
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.0",
     "firebase-functions-test": "^3.1.0",
-    "mocha": "^10.3.0"
+    "mocha": "^10.3.0",
+    "ts-node": "^10.9.2"
   },
   "private": true
 }

@@ -1,5 +1,6 @@
-const  functions = require('firebase-functions');
 
- const helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-})
+const functions = require('@google-cloud/functions-framework');
+
+functions.http('helloGET', (req, res) => {
+  res.send('Hello World!');
+});

@@ -1,4 +1,3 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -26,7 +25,8 @@
     "types": [
       "firebase-functions",
       "firebase-admin",
-      "firebase"
+      "firebase",
+      "jasmine"
     ]
 
   },
@@ -35,5 +35,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+
 }
