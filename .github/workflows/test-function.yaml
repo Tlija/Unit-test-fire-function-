@@ -1,37 +1,31 @@
-name: Lint, Test, and Deploy
+name: Cloud Functions Deployment Workflow
 
 on:
   push:
     branches:
       - master
+      - main
 
 jobs:
-  build:
+  lint_and_test:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: functions
 
-    steps:
-      - uses: actions/checkout@v2
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Setup Node.js
+    uses: actions/setup-node@v2
+    with:
+      node-version: '14'
+  - name: Install dependencies
+    run: npm install
+  - name: Linting
+    run: npm run lint
+  - name: Testing
+    run: npm test
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-      - name: Run linter
-        run: npm run lint
 
 
-
-#      - name: Generate function names
-#        id: function-names
-#        run: echo "::set-output name=names::$(node generate-names.js)"
-#
-#      - name: Deploy functions
-#        env:
-#          FUNCTIONS_NAMES: ${{ steps.function-names.outputs.names }}
-#        run: npm run deploy -- --names "${FUNCTIONS_NAMES}"
