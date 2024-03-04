@@ -13,7 +13,7 @@ module.exports = {
                 "node": true
             },
             "files": [
-                ".eslintrc.{js,cjs}"
+                ".eslintrc.{js,cjs,.ts}"
             ],
             "parserOptions": {
                 "sourceType": "script"
@@ -28,5 +28,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-    }
+    },
+  "extensions": [".ts"]
 }
