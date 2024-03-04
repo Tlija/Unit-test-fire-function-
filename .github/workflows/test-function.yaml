@@ -24,7 +24,7 @@ jobs:
 
       # Run tests
       - name: Run tests
-        run: yarn test
+        run: npm run test
 
 
 #      - name: Generate function names
