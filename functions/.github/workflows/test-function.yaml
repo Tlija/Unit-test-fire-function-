@@ -1,0 +1,31 @@
+name: Lint, Test, and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+#      - name: Run tests
+#        run: npm test
+
+#      - name: Generate function names
+#        id: function-names
+#        run: echo "::set-output name=names::$(node generate-names.js)"
+#
+#      - name: Deploy functions
+#        env:
+#          FUNCTIONS_NAMES: ${{ steps.function-names.outputs.names }}
+#        run: npm run deploy -- --names "${FUNCTIONS_NAMES}"

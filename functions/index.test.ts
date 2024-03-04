@@ -22,7 +22,7 @@ const httpInvocation = (fnUrl: string, port: number) => {
   });
 };
 
-describe('index.test.js', () => {
+describe('index.test.ts', () => {
   describe('functions_helloworld_get helloGET', () => {
     const PORT = 8081;
     let ffProc: { kill: () => any; };
