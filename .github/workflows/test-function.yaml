@@ -22,10 +22,8 @@ jobs:
       - name: Run linter
         run: npm run lint
 
-      # Run tests
       - name: Run tests
-        run: npm run test
-
+        run: npm test
 
 #      - name: Generate function names
 #        id: function-names
