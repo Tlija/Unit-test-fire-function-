@@ -25,7 +25,6 @@
     "types": [
       "firebase-functions",
       "firebase-admin",
-      "firebase",
       "jasmine"
     ]
 
