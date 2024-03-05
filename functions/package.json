@@ -3,7 +3,7 @@
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "test": "mocha --timeout 10000 index.spec.ts",
-    "lint": "eslint ."
+    "lint": "eslint . --ext .ts"
 
   },
   "engines": {
