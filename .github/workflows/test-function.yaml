@@ -4,17 +4,20 @@ on:
   push:
     branches:
       - 'master'
-      - 'main'
+
 jobs:
   lint_and_test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: functions
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '18'
       - name: Install dependencies
         run: npm install
       - name: Linting
