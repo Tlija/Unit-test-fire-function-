@@ -1,7 +1,9 @@
+
 const assert = require('assert');
 const {request} = require('gaxios');
 const {exec} = require('child_process');
 const waitPort = require('wait-port');
+const  {before,after } =require ("mocha") ;
 
 const startFF = async (target, signature, port) => {
   const ff = exec(
@@ -20,7 +22,7 @@ const httpInvocation = (fnUrl, port) => {
   });
 };
 
-describe('index.test.js', () => {
+describe('index.test.ts', () => {
   describe('functions_helloworld_get helloGET', () => {
     const PORT = 8081;
     let ffProc;
@@ -29,7 +31,11 @@ describe('index.test.js', () => {
       ffProc = await startFF('helloGET', 'http', PORT);
     });
 
-    after(() => ffProc.kill());
+    after(() => {
+      if (ffProc) {
+        ffProc.kill();
+      }
+    });
 
     it('helloGET: should print hello world', async () => {
       const response = await httpInvocation('helloGET', PORT);
