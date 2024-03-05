@@ -24,7 +24,8 @@ jobs:
         run: npm run lint
       - name: Testing
         run: npm test
-
+      - name: deploye
+        run: npm deploy
   deploy_functions:
     needs: lint_and_test
     if: github.ref == 'refs/heads/master'
