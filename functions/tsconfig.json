@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs", // Consider "esnext" for modern modules if applicable
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2022", // Latest supported ECMAScript target
+    "esModuleInterop": true, // Ensure compatibility with modern modules
+    "allowSyntheticDefaultImports": true, // Allow synthetic default imports (if needed)
+    "forceConsistentCasingInFileNames": true, // Enforce consistent file naming casing
+    "strictNullChecks": true, // Perform strict null checks
+    "noFallthroughCasesInSwitch": true, // Disallow fallthrough in switch statements
+    "strictBindCallApply": true, // Enforce stricter function calls
+    "resolveJsonModule": true, // Allow resolving JSON modules
+    "isolatedModules": true, // Enable isolated modules for better tree-shaking
+    "jsx": "react", // If using JSX, specify the JSX factory (e.g., "react")
+    "declaration": true, // Generate type declaration files (if desired)
+  },
+  "include": [
+    "src"
+  ],
+  "compileOnSave": true
+}
