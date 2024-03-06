@@ -24,7 +24,7 @@ jobs:
         run: npm run lint
       - name: Testing
         run: npm test
-      - name: deploye
+      - name: deploy
         run: npm deploy
   deploy_functions:
     needs: lint_and_test
@@ -36,11 +36,11 @@ jobs:
       - name: Deploy functions directly
         run: |
           # Logic to deploy functions directly on the main or master branch
-          echo "Deploying functions directly..."
+          npm
 
   create_function_input:
     needs: lint_and_test
-    if: github.ref != 'refs/heads/master' && github.ref != 'refs/heads/main'
+    if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
