@@ -34,8 +34,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Deploy functions directly
         run: |
-          # Logic to deploy functions directly on the main or master branch
-         npm deploy
+          # Logic to deploy functions directly on the  master branch
+          echo "Deploying functions directly..."
 
   create_function_input:
     needs: lint_and_test
