@@ -32,12 +32,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Load environment variables
+        run: |
+          source env/.env
+          echo "Loaded environment variables"
       - name: Deploy functions directly
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           cd functions
           npm install -g firebase-tools
-          firebase login --no-localhost
-          firebase deploy --only functions
+          firebase deploy --only functions --token $FIREBASE_TOKEN
 
   create_function_input:
     needs: lint_and_test
